@@ -1,95 +1,78 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import { useState } from "react";
+import {
+  GradientBackground,
+  BackgroundImage1,
+  BackgroundImage2,
+  FooterCon,
+  RedSpan,
+  FooterLink,
+  QuoteGeneratorCon,
+  QuoteGeneratorInnerCon,
+  QuoteGeneratorTitle,
+  QuoteGeneratorSubTitle,
+  GenerateQuoteButton,
+  GenerateQuoteButtonText,
+} from "./components/QuoteGenerator/QuoteGeneratorElement";
+import cloud1 from "../public/assets/cloudy-night.png";
+import cloud2 from "../public/assets/cloudy-day.png";
 
 export default function Home() {
+  const [numberOfQuotes, setNumberOfQuotes] = useState<Number | null>(0);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+    <GradientBackground>
+      <BackgroundImage1
+        src={cloud1}
+        priority={true}
+        height={300}
+        alt="cloud1"
+      />
+      <BackgroundImage2
+        src={cloud2}
+        priority={true}
+        height={300}
+        alt="cloud2"
+      />
+
+      <QuoteGeneratorCon>
+        <QuoteGeneratorInnerCon>
+          <QuoteGeneratorTitle>Quote Generator</QuoteGeneratorTitle>
+          <QuoteGeneratorSubTitle>
+            Looking for some inspiration? Generate a quote! <br /> Provided by{" "}
+            <FooterLink
+              href="https://zenquotes.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ZenQuotes API
+            </FooterLink>
+          </QuoteGeneratorSubTitle>
+
+          <GenerateQuoteButton>
+            <GenerateQuoteButtonText onClick={null}>
+              Generate Quote
+            </GenerateQuoteButtonText>
+          </GenerateQuoteButton>
+        </QuoteGeneratorInnerCon>
+      </QuoteGeneratorCon>
+
+      {/*Footer*/}
+      <FooterCon>
+        <>
+          Quotes Generated: {numberOfQuotes}
+          <br />
+          Developed with <RedSpan>♥ </RedSpan>
+          by{" "}
+          <FooterLink
+            href="github.com/roughbot/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+            @Sathyanarayanan
+          </FooterLink>
+        </>
+      </FooterCon>
+    </GradientBackground>
   );
 }
