@@ -1,8 +1,11 @@
 import { Backdrop, Fade, Modal } from "@mui/material";
 import React from "react";
 import {
+  ModalCircularProgress,
   QuoteGeneratorModelCon,
   QuoteGeneratorModelInnerCon,
+  QuoteGeneratorSubTitle,
+  QuoteGeneratorTitle,
 } from "./QuoteGeneratorElement";
 
 interface QuoteGeneratorModalProps {
@@ -24,6 +27,9 @@ const QuoteGeneratorModel = ({
   processingQuote,
   quoteReceived,
 }: QuoteGeneratorModalProps) => {
+  const wiseDevQuote = '"If it works and it is ugly, it is JavaScript."';
+  const wiseDevQuoteAuther = "- A wise developer";
+
   return (
     <Modal
       id="quote-generator"
@@ -39,7 +45,31 @@ const QuoteGeneratorModel = ({
     >
       <Fade in={open}>
         <QuoteGeneratorModelCon sx={style}>
-          <QuoteGeneratorModelInnerCon></QuoteGeneratorModelInnerCon>
+          <QuoteGeneratorModelInnerCon>
+            {processingQuote && !quoteReceived && (
+              <>
+                <ModalCircularProgress size={"8rem"} thickness={2.5} />
+                <QuoteGeneratorTitle>
+                  Creating Your Quote...
+                </QuoteGeneratorTitle>
+                <QuoteGeneratorSubTitle style={{ marginTop: "20px" }}>
+                  {wiseDevQuote}
+                  <br />
+                  <span style={{ fontSize: "1.2rem" }}>
+                    {wiseDevQuoteAuther}
+                  </span>
+                </QuoteGeneratorSubTitle>
+              </>
+            )}
+            {!processingQuote && quoteReceived && (
+              <>
+                <QuoteGeneratorTitle>Your Quote is Ready!</QuoteGeneratorTitle>
+                <QuoteGeneratorSubTitle style={{ marginTop: "20px" }}>
+                  {quoteReceived}
+                </QuoteGeneratorSubTitle>
+              </>
+            )}
+          </QuoteGeneratorModelInnerCon>
         </QuoteGeneratorModelCon>
       </Fade>
     </Modal>

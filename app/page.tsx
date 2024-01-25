@@ -27,6 +27,17 @@ export default function Home() {
   const handleOpenGenerator = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     setOpenGenerator(true);
+    setProcessingQuote(true);
+    try {
+      // const response = await fetch("https://zenquotes.io/api/random");
+      // setProcessingQuote(false);
+      setTimeout(() => {
+        setProcessingQuote(false);
+      }, 4000);
+    } catch (err) {
+      console.log(err);
+      setProcessingQuote(false);
+    }
   };
 
   return (

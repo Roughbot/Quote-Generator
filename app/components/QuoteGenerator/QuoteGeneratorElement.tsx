@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 export const GradientBackground = styled.div`
   background: linear-gradient(to right, #000046, #1cb5e0);
@@ -175,4 +175,13 @@ export const QuoteGeneratorModelInnerCon = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   position: relative;
+`;
+
+export const ModalCircularProgress = styled(CircularProgress)`
+  color: white !important;
+  stroke-linecap: round;
+  position: relative;
+  margin-left: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;

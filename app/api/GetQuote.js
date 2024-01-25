@@ -36,7 +36,6 @@ async function getQuote(api) {
       width / 2
     }" font-size="55" dy='1.2em'> ${newText} </tspan>`;
   }
-  console.log(tspanElements);
 
   const backgroundImages = [
     "background/Celestial.jpg",
@@ -80,8 +79,6 @@ async function getQuote(api) {
       },
     ])
     .toFile(outputImagePath);
-
-  console.log("Image created successfully!");
 }
 
 getQuote(apiURL);
