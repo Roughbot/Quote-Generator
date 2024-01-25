@@ -1,6 +1,7 @@
 const sharp = require("sharp");
 const apiURL = "https://zenquotes.io/api/random";
 const fetch = require("node-fetch");
+
 async function getQuote(api) {
   let quoteText;
   let quoteAuthor;

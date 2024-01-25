@@ -16,23 +16,28 @@ import {
 } from "./components/QuoteGenerator/QuoteGeneratorElement";
 import cloud1 from "../public/assets/cloudy-night.png";
 import cloud2 from "../public/assets/cloudy-day.png";
+import QuoteGeneratorModel from "./components/QuoteGenerator";
 
 export default function Home() {
-  const [numberOfQuotes, setNumberOfQuotes] = useState<Number | null>(0);
+  const [openGenerator, setOpenGenerator] = useState(false);
+  const handleCloseGenerator = () => setOpenGenerator(false);
+  const [processingQuote, setProcessingQuote] = useState(false);
+  const [quoteReceived, setQuoteReceived] = useState<String | null>(null);
+
+  const handleOpenGenerator = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    setOpenGenerator(true);
+  };
 
   return (
     <GradientBackground>
-      <BackgroundImage1
-        src={cloud1}
-        priority={true}
-        height={300}
-        alt="cloud1"
-      />
-      <BackgroundImage2
-        src={cloud2}
-        priority={true}
-        height={300}
-        alt="cloud2"
+      <QuoteGeneratorModel
+        open={openGenerator}
+        close={handleCloseGenerator}
+        processingQuote={processingQuote}
+        setProcessingQuote={setProcessingQuote}
+        quoteReceived={quoteReceived}
+        setQuoteReceived={setQuoteReceived}
       />
 
       <QuoteGeneratorCon>
@@ -50,18 +55,29 @@ export default function Home() {
           </QuoteGeneratorSubTitle>
 
           <GenerateQuoteButton>
-            <GenerateQuoteButtonText onClick={null}>
+            <GenerateQuoteButtonText onClick={handleOpenGenerator}>
               Generate Quote
             </GenerateQuoteButtonText>
           </GenerateQuoteButton>
         </QuoteGeneratorInnerCon>
       </QuoteGeneratorCon>
 
+      <BackgroundImage1
+        src={cloud1}
+        priority={true}
+        height={300}
+        alt="cloud1"
+      />
+      <BackgroundImage2
+        src={cloud2}
+        priority={true}
+        height={300}
+        alt="cloud2"
+      />
+
       {/*Footer*/}
       <FooterCon>
         <>
-          Quotes Generated: {numberOfQuotes}
-          <br />
           Developed with <RedSpan>♥ </RedSpan>
           by{" "}
           <FooterLink
