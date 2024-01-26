@@ -10,7 +10,6 @@ import {
 import ImageBlob from "../animations/ImageBlob";
 import { ImageBlobCon } from "../animations/AnimationElement";
 import AnimatedDownloadButton from "../animations/AnimatedDownloadButton";
-import { log } from "console";
 
 interface QuoteGeneratorModalProps {
   open: boolean;
@@ -18,7 +17,7 @@ interface QuoteGeneratorModalProps {
   processingQuote: boolean;
   setProcessingQuote: React.Dispatch<React.SetStateAction<boolean>>;
   quoteReceived: String | null;
-  setQuoteReceived: React.Dispatch<React.SetStateAction<String | null>>;
+  setQuoteReceived: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const style = {};

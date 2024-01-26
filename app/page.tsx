@@ -21,7 +21,7 @@ import QuoteGeneratorModel from "./components/QuoteGenerator";
 export default function Home() {
   const [openGenerator, setOpenGenerator] = useState(false);
   const [processingQuote, setProcessingQuote] = useState(false);
-  const [quoteReceived, setQuoteReceived] = useState<String | null>(null);
+  const [quoteReceived, setQuoteReceived] = useState<string | null>(null);
 
   const handleCloseGenerator = () => {
     if (quoteReceived) {
