@@ -38,10 +38,7 @@ const QuoteGeneratorModel = ({
 
   useEffect(() => {
     if (quoteReceived) {
-      const binaryData = Buffer.from(quoteReceived, "base64");
-      const blob = new Blob([binaryData], { type: "image/png" });
-      const blobUrlGenerated = URL.createObjectURL(blob);
-      console.log(blobUrlGenerated);
+      const blobUrlGenerated = quoteReceived.toString();
       setBlobUrl(blobUrlGenerated);
 
       return () => {
@@ -97,7 +94,7 @@ const QuoteGeneratorModel = ({
                   Preview...
                 </QuoteGeneratorSubTitle>
                 <ImageBlobCon>
-                  <ImageBlob quoteReceived={quoteReceived} blobUrl={blobUrl} />
+                  <ImageBlob blobUrl={blobUrl} />
                 </ImageBlobCon>
                 <AnimatedDownloadButton handleDownload={handleDownload} />
               </>

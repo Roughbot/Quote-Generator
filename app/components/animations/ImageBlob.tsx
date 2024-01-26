@@ -1,14 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { useState } from "react";
 
 interface ImageBlogProps {
-  quoteReceived: String;
   blobUrl: string | null;
 }
 
-const ImageBlob = ({ quoteReceived, blobUrl }: ImageBlogProps) => {
-  return <div>Image</div>;
+const ImageBlob = ({ blobUrl }: ImageBlogProps) => {
+  return blobUrl && <Image src={blobUrl} alt="quote" width={140} height={70} />;
 };
 
 export default ImageBlob;

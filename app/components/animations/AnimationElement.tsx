@@ -8,29 +8,35 @@ export const ImageBlobCon = styled.div`
   text-align: center;
   top: 10px;
   margin-top: 20px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: fit-content;
   margin: auto;
-  height: 100px;
+  height: fit-content;
   z-index: 99999;
 
   &:hover {
-    transform: scale(4.8);
+    transform: scale(4.6);
     z-index: 99999;
     transition: 0.3s ease-in-out;
-    box-shadow: 0 0 80px 90px rgba(0, 0, 0, 6);
+    box-shadow: 0 0 60px 50px rgba(0, 0, 0, 6);
+    width: fit-content;
+    height: 60px;
 
     @media screen and (max-width: 800px) {
       transform: scale(3.8);
       z-index: 99999;
       transition: 0.3s ease-in-out;
-      box-shadow: 0 0 80px 90px rgba(0, 0, 0, 6);
+      box-shadow: 0 0 60px 50px rgba(0, 0, 0, 6);
+      height: 60px;
+      width: fit-content;
     }
     @media screen and (max-width: 600px) {
       transform: scale(2.8);
       z-index: 99999;
       transition: 0.3s ease-in-out;
-      box-shadow: 0 0 80px 90px rgba(0, 0, 0, 6);
+      box-shadow: 0 0 60px 50px rgba(0, 0, 0, 6);
+      height: 60px;
+      width: fit-content;
     }
   }
 `;
@@ -42,7 +48,6 @@ export const DownloadQuiteCardCon = styled.div`
   border-radius: 20px;
   cursor: pointer;
   margin-top: 20px;
-  margin-bottom: 40px;
   transform: scale(0.7);
   width: calc(70vw / 2);
   margin: auto;

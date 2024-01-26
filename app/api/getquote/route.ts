@@ -68,7 +68,7 @@ async function getQuote(apiURL: string): Promise<Buffer> {
         </text>
         <text x="${
           width / 2
-        }" y="${authorY}" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" font-size="25">
+        }" y="${authorY}" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" font-size="40">
             - ${quoteAuthor}
         </text>
     </svg>`),
@@ -77,6 +77,7 @@ async function getQuote(apiURL: string): Promise<Buffer> {
       },
     ])
     .toBuffer();
+
   return imageBuffer;
 }
 
