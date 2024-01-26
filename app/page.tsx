@@ -25,7 +25,6 @@ export default function Home() {
 
   const handleCloseGenerator = () => {
     setOpenGenerator(false);
-    setProcessingQuote(false);
     setQuoteReceived(null);
   };
   const handleOpenGenerator = async (event: React.SyntheticEvent) => {
