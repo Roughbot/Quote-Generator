@@ -36,7 +36,7 @@ export default function Home() {
     setOpenGenerator(true);
     setProcessingQuote(true);
     try {
-      const response = await fetch("/api/getquote");
+      const response = await fetch(`/api/getquote?${Date.now()}`);
       const quote = await response.blob();
       const quoteUrl = URL.createObjectURL(quote);
       setQuoteReceived(quoteUrl.toString());
