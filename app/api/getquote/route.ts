@@ -96,6 +96,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
   }
 
   return new NextResponse(imageBuffer, {
-    headers: { "Content-Type": "image/png" },
+    headers: { "Content-Type": "image/png", "Cache-Control": "no-store" },
   });
 }
