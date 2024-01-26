@@ -37,15 +37,17 @@ const QuoteGeneratorModel = ({
   const [blobUrl, setBlobUrl] = useState<string | null>(null);
 
   useEffect(() => {
+    let blobUrlGenerated: string | null = null;
     if (quoteReceived) {
-      const blobUrlGenerated = quoteReceived.toString();
+      blobUrlGenerated = quoteReceived.toString();
       setBlobUrl(blobUrlGenerated);
-
-      return () => {
-        URL.revokeObjectURL(blobUrlGenerated);
-      };
     }
-  }, [quoteReceived]);
+    return () => {
+      if (blobUrl) {
+        URL.revokeObjectURL(blobUrl);
+      }
+    };
+  }, [quoteReceived, blobUrl]);
 
   const handleDownload = () => {
     const link = document.createElement("a");
