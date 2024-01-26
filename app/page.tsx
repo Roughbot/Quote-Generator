@@ -24,7 +24,11 @@ export default function Home() {
   const [quoteReceived, setQuoteReceived] = useState<String | null>(null);
 
   const handleCloseGenerator = () => {
+    if (quoteReceived) {
+      URL.revokeObjectURL(quoteReceived);
+    }
     setOpenGenerator(false);
+    setProcessingQuote(false);
     setQuoteReceived(null);
   };
   const handleOpenGenerator = async (event: React.SyntheticEvent) => {
