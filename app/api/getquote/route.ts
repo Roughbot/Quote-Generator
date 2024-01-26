@@ -1,13 +1,14 @@
-const sharp = require("sharp");
-const apiURL = "https://zenquotes.io/api/random";
-const fetch = require("node-fetch");
+import { NextRequest, NextResponse } from "next/server";
+import sharp from "sharp";
+import fetch from "node-fetch";
+import path from "path";
 
-async function getQuote(api) {
+async function getQuote(apiURL: string): Promise<Buffer> {
   let quoteText;
   let quoteAuthor;
 
-  const response = await fetch(api);
-  var quoteData = await response.json();
+  const response = await fetch(apiURL.toString());
+  var quoteData: any = await response.json();
 
   quoteText = quoteData[0].q;
   quoteAuthor = quoteData[0].a;
@@ -22,7 +23,7 @@ async function getQuote(api) {
   let newText = "";
 
   let tspanElements = "";
-  for (i = 0; i < words.length; i++) {
+  for (let i = 0; i < words.length; i++) {
     newText += words[i] + " ";
     if ((i + 1) % lineBreak === 0) {
       tspanElements += `<tspan x="${
@@ -38,27 +39,24 @@ async function getQuote(api) {
   }
 
   const backgroundImages = [
-    "background/Celestial.jpg",
-    "background/Telegram.jpg",
-    "background/Memariani.jpg",
-    "background/CoolSky.jpg",
-    "background/DarkOcean.jpg",
-    "background/DigitalWater.jpg",
-    "background/GreenandBlue.jpg",
-    "background/KeyMeh.jpg",
+    "/assets/background/Celestial.jpg",
+    "/assets/background/CoolSky.jpg",
+    "/assets/background/DarkOcean.jpg",
+    "/assets/background/DigitalWater.jpg",
+    "/assets/background/GreenandBlue.jpg",
+    "/assets/background/KeyMeh.jpg",
+    "/assets/background/Memariani.jpg",
+    "/assets/background/Telegram.jpg",
   ];
 
   const randomIndex = Math.floor(Math.random() * backgroundImages.length);
   const backgroundImagePath = backgroundImages[randomIndex];
-  const timestamp = Date.now();
-  const outputImagePath = `finalOutPut/quote_${timestamp}.png`;
-
   const quoteY = height / 3;
   const lineHeight = 55 * 1.2; // Adjust this value based on your font size
   const quoteLines = tspanElements.split("<tspan").length - 1; // Count the number of lines in the quote
   const authorY = quoteY + quoteLines * lineHeight + 50; // Calculate the y position of the author's name
-
-  await sharp(backgroundImagePath)
+  const absolutePath = path.join(process.cwd(), "public", backgroundImagePath);
+  const imageBuffer = await sharp(absolutePath)
     .composite([
       {
         input:
@@ -78,7 +76,25 @@ async function getQuote(api) {
         left: 0,
       },
     ])
-    .toFile(outputImagePath);
+    .toBuffer();
+  return imageBuffer;
 }
 
-getQuote(apiURL);
+export async function GET(req: NextRequest, res: NextResponse) {
+  if (req.method !== "GET") {
+    res.headers.set("Allow", "GET");
+    return NextResponse.json({ error: "Method Not Allowed" }, { status: 405 });
+  }
+  const imageBuffer = await getQuote("https://zenquotes.io/api/random");
+
+  if (!imageBuffer) {
+    return NextResponse.json(
+      { error: "Error generating image" },
+      { status: 500 }
+    );
+  }
+
+  return new NextResponse(imageBuffer, {
+    headers: { "Content-Type": "image/png" },
+  });
+}

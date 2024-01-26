@@ -42,6 +42,7 @@ export const DownloadQuiteCardCon = styled.div`
   border-radius: 20px;
   cursor: pointer;
   margin-top: 20px;
+  margin-bottom: 40px;
   transform: scale(0.7);
   width: calc(70vw / 2);
   margin: auto;

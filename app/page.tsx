@@ -20,9 +20,10 @@ import QuoteGeneratorModel from "./components/QuoteGenerator";
 
 export default function Home() {
   const [openGenerator, setOpenGenerator] = useState(false);
-  const handleCloseGenerator = () => setOpenGenerator(false);
   const [processingQuote, setProcessingQuote] = useState(false);
   const [quoteReceived, setQuoteReceived] = useState<String | null>(null);
+
+  const handleCloseGenerator = () => setOpenGenerator(false);
 
   const handleOpenGenerator = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -30,7 +31,11 @@ export default function Home() {
     setProcessingQuote(true);
     try {
       // const response = await fetch("https://zenquotes.io/api/random");
-      // setProcessingQuote(false);
+      const response = await fetch("/api/getquote");
+      const quote = await response.blob();
+      const quoteUrl = URL.createObjectURL(quote);
+      setQuoteReceived(quoteUrl.toString());
+
       setTimeout(() => {
         setProcessingQuote(false);
       }, 4000);

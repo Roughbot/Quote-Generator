@@ -7,9 +7,15 @@ import {
   DownloadQuiteCardConText,
 } from "./AnimationElement";
 
-const AnimatedDownloadButton = () => {
+interface AnimatedDownloadButtonProps {
+  handleDownload: () => void;
+}
+
+const AnimatedDownloadButton = ({
+  handleDownload,
+}: AnimatedDownloadButtonProps) => {
   return (
-    <DownloadQuiteCardCon>
+    <DownloadQuiteCardCon onClick={handleDownload}>
       <CenteredLottie loop animationData={lottiejson} play />
       <DownloadQuiteCardConText>
         Download Your Quote Card..

@@ -96,6 +96,7 @@ export const QuoteGeneratorTitle = styled.div`
   text-align: center;
   position: relative;
   padding: 0px 20px 0px 20px;
+  margin-top: 20px;
   @media only screen and (max-width: 600px) {
     font-size: 30px;
   }

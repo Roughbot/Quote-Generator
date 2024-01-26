@@ -1,8 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import { useState } from "react";
 
-const ImageBlob = () => {
-  return <div>ImageBlob</div>;
+interface ImageBlogProps {
+  quoteReceived: String;
+  blobUrl: string | null;
+}
+
+const ImageBlob = ({ quoteReceived, blobUrl }: ImageBlogProps) => {
+  return <div>Image</div>;
 };
 
 export default ImageBlob;
