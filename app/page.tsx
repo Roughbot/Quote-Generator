@@ -65,10 +65,8 @@ export default function Home() {
             </FooterLink>
           </QuoteGeneratorSubTitle>
 
-          <GenerateQuoteButton>
-            <GenerateQuoteButtonText onClick={handleOpenGenerator}>
-              Generate Quote
-            </GenerateQuoteButtonText>
+          <GenerateQuoteButton onClick={handleOpenGenerator}>
+            <GenerateQuoteButtonText>Generate Quote</GenerateQuoteButtonText>
           </GenerateQuoteButton>
         </QuoteGeneratorInnerCon>
       </QuoteGeneratorCon>
