@@ -39,14 +39,14 @@ async function getQuote(apiURL: string): Promise<Buffer> {
   }
 
   const backgroundImages = [
-    "/assets/background/Celestial.jpg",
-    "/assets/background/CoolSky.jpg",
-    "/assets/background/DarkOcean.jpg",
-    "/assets/background/DigitalWater.jpg",
-    "/assets/background/GreenandBlue.jpg",
-    "/assets/background/KeyMeh.jpg",
-    "/assets/background/Memariani.jpg",
-    "/assets/background/Telegram.jpg",
+    "https://drive.google.com/uc?export=view&id=1a4pU4VIirniV7iMRZYjsKVISpPBw0YRi",
+    "https://drive.google.com/uc?export=view&id=1V8vt2oYAGun1sK_tjJrFofR5ZDk4jDrN",
+    "https://drive.google.com/uc?export=view&id=1KvwijhLN96y1eWhhbS6d5T0nj4ZWdRKQ",
+    "https://drive.google.com/uc?export=view&id=15s2wG_XjFHbdZtZIO04guEWgnpFv0w63",
+    "https://drive.google.com/uc?export=view&id=15uMe6PXEj96qba4-cinNt_74TsK6ibjG",
+    "https://drive.google.com/uc?export=view&id=1pcHYrf8MyFflCiGSlbMBXMzdT8Rnsau5",
+    "https://drive.google.com/uc?export=view&id=16Pzu0PgiaMcEoF0cjw3Rt_3JCy8qxqXE",
+    "https://drive.google.com/uc?export=view&id=1WIOTwiTEPyC9h6X4wLCelkjPpMtdhoY3",
   ];
 
   const randomIndex = Math.floor(Math.random() * backgroundImages.length);
@@ -55,8 +55,12 @@ async function getQuote(apiURL: string): Promise<Buffer> {
   const lineHeight = 55 * 1.2; // Adjust this value based on your font size
   const quoteLines = tspanElements.split("<tspan").length - 1; // Count the number of lines in the quote
   const authorY = quoteY + quoteLines * lineHeight + 50; // Calculate the y position of the author's name
-  const absolutePath = path.join(process.cwd(), "public", backgroundImagePath);
-  const imageBuffer = await sharp(absolutePath)
+  // const absolutePath = path.join(process.cwd(), "public", backgroundImagePath);
+  // const absolutePath = backgroundImagePath;
+  const res = await fetch(backgroundImagePath);
+  const gImageBuffer = await res.buffer();
+
+  const imageBuffer = await sharp(gImageBuffer)
     .composite([
       {
         input:
